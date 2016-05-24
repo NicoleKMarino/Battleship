@@ -1,3 +1,6 @@
+require "/Users/Nicole/Documents/mod1/battleship/lib/Game.rb"
+
+
 class Board
   attr_reader :board
   def initialize
@@ -7,13 +10,19 @@ class Board
 
 
   def init_board
-    return [
-    [0,0,0,0],
+  @board= [
     [0,0,0,0],
     [0,0,0,0],
     [0,0,0,0]
   ]
+
+  puts "
+===========
+. 1 2 3 4
+A
+B
+C
+D
+==========="
   end
-
-
-end 
+end
