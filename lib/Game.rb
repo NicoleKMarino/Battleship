@@ -20,9 +20,10 @@ def user_play
   puts @second_coordinates
   new_game
 end
-#
-# def computer_play
-# end
+
+def computer_play
+options=["A1","A2","A3"]
+end
 
 def new_game
   puts @first_coordinates
