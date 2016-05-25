@@ -16,7 +16,8 @@ class BattleshipTest < Minitest::Test
   def test_menu_instructions
   end
 
-  def test_menu_q
-  end 
+  def test_menu_quit
+    
+  end
 
 end
