@@ -1,6 +1,5 @@
-require "/Users/Nicole/Documents/mod1/battleship/lib/Game.rb"
-require "/Users/Nicole/Documents/mod1/battleship/lib/Ship.rb"
-
+require_relative "Game"
+require_relative "Ship"
 
 class Board
   attr_reader :spaces
@@ -13,11 +12,11 @@ class Board
     spaces = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
   end
 
-
-  def place_ship
-    puts ship1.location
-    puts ship2.location
+  def update_board(location,result)
+    @spaces[location[0].to_i][location[1].to_i] = result
+    display
   end
+
 
   def display
     puts "==========="
@@ -28,7 +27,5 @@ class Board
     puts "4 " + spaces[3].join(" ").gsub("0", " ")
     puts "==========="
   end
-
-
 
 end

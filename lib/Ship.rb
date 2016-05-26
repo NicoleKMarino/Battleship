@@ -5,6 +5,4 @@ class Ship
     @location = location
     @health = size
   end
-
-
 end

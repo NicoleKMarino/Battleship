@@ -1,10 +1,9 @@
 
-require "/Users/Nicole/Documents/mod1/battleship/lib/Board.rb"
-require "/Users/Nicole/Documents/mod1/battleship/lib/Ship.rb"
-
+require_relative "Board.rb"
+require_relative "Ship.rb"
 
 class Game
-  attr_reader :board
+  attr_reader :board, :player1, :player2, :computer1, :computer2
   def initialize
     @board = Board.new
     @player1
@@ -14,7 +13,16 @@ class Game
   end
 
   def user_input_first
-    puts "Where do you want to place your first ship. Remember, this one is 2 coordniates long and they need to connect with each other"
+    puts "Where do you want to place your first ship.
+    This is the board you can place it on.
+    ===========
+    . 1 2 3 4
+    A
+    B
+    C
+    D
+    ===========
+    Remember, this one is 2 coordniates long and they need to connect with each other"
     user_input1=gets.upcase.split(" ")
     if user_input1.size > 2
       puts "Thats too big!"
@@ -54,16 +62,6 @@ class Game
   def translate_string(space)
     new_space = []
     characters = space.scan /\w/
-    case characters[0]
-    when "A"
-      new_space.push(0)
-    when "B"
-      new_space.push(1)
-    when "C"
-      new_space.push(2)
-    else
-      new_space.push(3)
-    end
 
     case characters[1]
     when "1"
@@ -71,6 +69,17 @@ class Game
     when "2"
       new_space.push(1)
     when "3"
+      new_space.push(2)
+    else
+      new_space.push(3)
+    end
+
+    case characters[0]
+    when "A"
+      new_space.push(0)
+    when "B"
+      new_space.push(1)
+    when "C"
       new_space.push(2)
     else
       new_space.push(3)
@@ -131,14 +140,15 @@ class Game
     translated_guess = translate_string(user_guess)
     if @computer1.location.include? translated_guess
       puts "It's a hit!"
-      @computer1 = computer1.health.to_i
-      @computer1 - 1
+      @computer1.instance_variable_set(:@health, @computer1.health - 1)
+      @board.update_board(translated_guess,"H")
     elsif @computer2.location.include? translated_guess
       puts "It's a hit!"
-      @computer2 = computer1.health.to_i
-      @computer2 - 1
+      @computer2.instance_variable_set(:@health, @computer2.health - 1)
+      @board.update_board(translated_guess,"H")
     else
       puts "It's a miss"
+      @board.update_board(translated_guess,"M")
     end
   end
 
@@ -146,23 +156,13 @@ class Game
     numbers = [0,1,2,3]
     guess = numbers.sample(2)
     if @player1.location.include? guess
-      puts "It's a hit!"
-      @player1.health = player1.health.to_i
-      @player1.health - 1
+      puts "The computer has hit you!"
+      @player1.instance_variable_set(:@health, @player1.health - 1)
     elsif @player2.location.include? guess
-      puts "It's a hit!"
-      @player2.health = player1.health.to_i
-      @player2.health - 1
+      puts "The computer has hit you!"
+      @player2.instance_variable_set(:@health, @player2.health - 1)
     else
-      puts "It's a miss"
+      puts "The computer has missed you!"
     end
   end
-
-
-  def update
-
-  end
-
 end
-
-# example.user_play

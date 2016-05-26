@@ -1,5 +1,4 @@
-require "/Users/Nicole/Documents/mod1/battleship/lib/Game.rb"
-#would like to require this but it keeps creating a new game
+require_relative "Game"
 class Battleship
   def initialize
     @menu=self.menu
@@ -10,12 +9,13 @@ class Battleship
     userInput= gets.chomp.upcase
     case userInput
     when "P"
+      puts "Let's goooo!"
       game = Game.new
       game.user_input_first
       game.user_input_second
       game.computer_input_first
       game.computer_input_second
-      play_game
+      play_game(game)
     when "I"
       puts "Seriosly, you don't know how to play battleship? Everyone knows how to play battleship"
       menu
@@ -26,22 +26,22 @@ class Battleship
     end
   end
 
-  def play_game
+  def play_game(game)
     continue = true
     while(continue)
       game.user_guess
-      if @computer1.health == 0 && @computer2.health == 0
+      if game.computer1.health == 0 && game.computer2.health == 0
         continue = false
         abort("YOU WON!")
       else
-        #update board
         game.computer_guess
-        if @player1.health == 0 && @player2.health == 0
+        if game.player1.health == 0 && game.player2.health == 0
           continue = false
           abort("YOU LOST....BOO")
-        else
-          update board
         end
       end
+    end
+  end
 
-      play=Battleship.new
+end
+play=Battleship.new
