@@ -6,8 +6,5 @@ class Ship
     @health = size
   end
 
-  
-  def check_if_hit
-  end
 
 end

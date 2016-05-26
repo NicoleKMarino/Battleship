@@ -10,9 +10,14 @@ class Battleship
     userInput= gets.chomp.upcase
     case userInput
     when "P"
-      Game.new
+      game = Game.new
+      game.user_input_first
+      game.user_input_second
+      game.computer_input_first
+      game.computer_input_second
+      play_game
     when "I"
-      puts "instructions coming soon"
+      puts "Seriosly, you don't know how to play battleship? Everyone knows how to play battleship"
       menu
     when "Q" then abort("That's too bad, goodbye")
     else
@@ -20,6 +25,23 @@ class Battleship
       menu
     end
   end
-end
 
-play=Battleship.new
+  def play_game
+    continue = true
+    while(continue)
+      game.user_guess
+      if @computer1.health == 0 && @computer2.health == 0
+        continue = false
+        abort("YOU WON!")
+      else
+        #update board
+        game.computer_guess
+        if @player1.health == 0 && @player2.health == 0
+          continue = false
+          abort("YOU LOST....BOO")
+        else
+          update board
+        end
+      end
+
+      play=Battleship.new

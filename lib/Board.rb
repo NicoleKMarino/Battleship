@@ -10,10 +10,8 @@ class Board
   end
 
   def make_spaces
-    spaces = {"A"=>[0,0,0,0],"B"=>[0,0,0,0],"C"=>[0,0,0,0],"D"=>[0,0,0,0]}
-  
+    spaces = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
   end
-
 
 
   def place_ship
@@ -24,10 +22,10 @@ class Board
   def display
     puts "==========="
     puts ". A B C D"
-    puts "1 " + spaces["A"].join(" ").gsub("0", " ")
-    puts "2 " + spaces["B"].join(" ").gsub("0", " ")
-    puts "3 " + spaces["C"].join(" ").gsub("0", " ")
-    puts "4 " + spaces["D"].join(" ").gsub("0", " ")
+    puts "1 " + spaces[0].join(" ").gsub("0", " ")
+    puts "2 " + spaces[1].join(" ").gsub("0", " ")
+    puts "3 " + spaces[2].join(" ").gsub("0", " ")
+    puts "4 " + spaces[3].join(" ").gsub("0", " ")
     puts "==========="
   end
 
